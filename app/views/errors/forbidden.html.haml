@@ -1,0 +1,6 @@
+#error
+  - case @exception
+  - when ApplicationController::IpAddressRejected
+    %h1= "あなたのIPアドレス (#{request.ip})からは利用できません。"
+  - else
+    %h1 指定されたページを閲覧する権限がありません。
