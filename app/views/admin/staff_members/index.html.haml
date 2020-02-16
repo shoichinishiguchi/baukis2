@@ -1,0 +1,31 @@
+- @title = "職員管理"
+%h1= @title
+.table-wrapper
+  .links
+    =link_to "新規登録", :new_admin_staff_member
+  %table.listing
+    %tr
+      %th 氏名
+      %th フリガナ
+      %th メールアドレス
+      %th 入社日
+      %th 退職日
+      %th 停止フラグ
+      %th アクション
+    - @staff_members.each do |m|
+      %tr
+        %td= "#{m.family_name} #{m.given_name}"
+        %td= "#{m.family_name_kana} #{m.given_name_kana}"
+        %td.email= m.email
+        %td.date= m.start_date.strftime("%Y%m%d")
+        %td.date= m.end_date.try(:strftime, "%Y%m%d")
+        %td.boolean
+          = m.suspended? ? raw("&#x2611;") : raw("&#x2610;")
+        %td.actions
+          = link_to "編集", [ :edit, :admin, m]
+          |
+          = link_to "削除", [ :admin, m ], method: :delete,
+            data: { confirm: "本当に削除しますか"}
+
+  .links
+    = link_to "新規登録", :new_admin_staff_member
