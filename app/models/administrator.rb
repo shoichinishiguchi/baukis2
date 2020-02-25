@@ -7,6 +7,4 @@ class Administrator < ApplicationRecord
       self.hashed_password = nil
     end
   end
-
-  private
 end
