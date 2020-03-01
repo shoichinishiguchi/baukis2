@@ -3,6 +3,7 @@
 .table-wrapper
   .links
     =link_to "新規登録", :new_admin_staff_member
+  = paginate @staff_members
   %table.listing
     %tr
       %th 氏名
@@ -28,6 +29,6 @@
           |
           = link_to "削除", [ :admin, m ], method: :delete,
             data: { confirm: "本当に削除しますか"}
-
+  = paginate @staff_members
   .links
     = link_to "新規登録", :new_admin_staff_member

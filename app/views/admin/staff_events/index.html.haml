@@ -7,6 +7,7 @@
 .table_wrapper
   .links
     = link_to "職員一覧", :admin_staff_members
+  = paginate @events
   %table.listing
     %tr
       - unless @staff_member
@@ -17,5 +18,6 @@
     - if @events.empty?
       %tr
         = content_tag(:td, "記録がありません", colspan: @staff_member ? 2 : 3, style: "text-align: center" )
+  = paginate @events
   .links
     = link_to "職員一覧", :admin_staff_members
