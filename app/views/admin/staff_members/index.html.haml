@@ -14,14 +14,14 @@
       %th 停止フラグ
       %th アクション
     - @staff_members.each do |m|
+      - p = StaffMemberPresenter.new(m, self)
       %tr
         %td= "#{m.family_name} #{m.given_name}"
         %td= "#{m.family_name_kana} #{m.given_name_kana}"
         %td.email= m.email
         %td.date= m.start_date.strftime("%Y%m%d")
         %td.date= m.end_date.try(:strftime, "%Y%m%d")
-        %td.boolean
-          = m.suspended? ? raw("&#x2611;") : raw("&#x2610;")
+        %td.boolean= p.suspended_mark
         %td.actions
           = link_to "編集", [ :edit, :admin, m]
           |
